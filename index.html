@@ -20,28 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>  
-    <section class="social-media-icons">
-        <div class="social-media-wrap">
-            <a href="#">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-        </div>
-    </section>
+
+    <section id="section_social" class="social-media-icons"></section>
         
     <header class="main-header">
         <div class="header-wrap">
@@ -56,41 +36,17 @@
     
             <div class="wrap-nav-header">
                 <nav class="nav-header">
-                    <input type="checkbox" id="check-menu"/>
-                    <label for="check-menu" class="btn-check">
-                        <!-- <i class="fas fa-bars"></i> -->
+                    <label id="btn_menu" class="btn-check">
                         &#9776;
                     </label>
-                    
-                    <ul class="main-menu">
-                        <li class="menu-item">
-                            <a href="#">Inicio</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Nosotros</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Servicios</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Equipo</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Clientes</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Equipo</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#">Contacto</a>
-                        </li>
-                    </ul>
-                    <div class="overlay-menu"></div>
+                    <div id="layer_main_menu" class="layer_main_menu"></div>
                 </nav>
 
             </div>
         </div>
     </header>
+
+    <div>
 
     <div class="hero"></div>
 
@@ -100,35 +56,58 @@
 
     <footer class="main-footer">
         <div class="footer-wrap">
-            <div>
+            <div class="footer-column1">
                 <div class="wrap-logo-header">
-                    <div class="logo-img-header">
-                        <img draggable="false" src="_img/logo/logo.png" alt="Logo">
-                    </div>
                     <div class="logo-name-header">
-                        <img draggable="false" src="_img/logo/letra.png" alt="Nombre">
+                        <img draggable="false" src="img/logo/letra.png" alt="Nombre">
                     </div>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit rem voluptates quidem adipisci possimus expedita sed? Nulla suscipit dolores non.</p>
             </div>
-            <div>
-                <h5>REDES</h5>
-                <ul>
-                    <li>+51 920660097</li>
-                    <li>+51 1 4800201</li>
-                    <li>bufetedeabogadosvaldivieso@gmail.com</li>
-                    <li>Calle Infante de la Torre 164 - Oficina 101, San Borja, Lima, Perú</li>
-                </ul>
+            <div class="redes">
+                <p>REDES</p>
+                <div class="contacts">
+                    <div>
+                        <a href="#">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <h5>INFORMACIÓN</h5>
-                <ul>
-                    <li>+51 920660097</li>
-                    <li>+51 1 4800201</li>
-                    <li><a href="mailto:bufetedeabogadosvaldivieso@gmail.com">bufetedeabogadosvaldivieso@gmail.com</a></li>
-                    <li>Calle Infante de la Torre 164 - Oficina 101, San Borja, Lima, Perú</li>
-                </ul>
+            <div class="information">
+                <p>INFORMACIÓN</p>
+                <div class="contacts">
+                    <div>+51 920660097</div>
+                    <div>+51 1 4800201</div>
+                    <div><a href="mailto:bufetedeabogadosvaldivieso@gmail.com">bufetedeabogadosvaldivieso@gmail.com</a></div>
+                    <div>Calle Infante de la Torre 164 - Oficina 101, San Borja, Lima, Perú</div>
+                </div>
             </div>
         </div>
 
@@ -143,6 +122,9 @@
         </div>
     </footer>
 
+    </div>
+
     <script src="https://kit.fontawesome.com/2c89b3a663.js" crossorigin="anonymous"></script>
+    <script src="js/index.js" type="module"></script>
 </body>
 </html>
