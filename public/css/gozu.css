@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
+html{
+  height: 100%;
+  width: 100%;
+}
+
 .h100pc-2 {
   height: calc(100% - 2px);
 }
