@@ -1,8 +1,10 @@
 @charset "UTF-8";
 
-html{
-  height: 100%;
-  width: 100%;
+:root {
+  --color: #a88c44;
+  --color-t: #a88c4480;
+  --color-nav: #282424;
+  --color-nav-t: #28242480;
 }
 
 .h100pc-2 {
@@ -1228,10 +1230,6 @@ html{
   display: inline-block;
 }
 
-.dpfl {
-  display: flex;
-}
-
 .dpF {
   display: flex;
 }
@@ -1365,6 +1363,10 @@ html{
   flex-grow: 0;
 }
 
+.fb30pc {
+  flex-basis: 30%;
+}
+
 .fb70pc {
   flex-basis: 70%;
 }
@@ -1495,6 +1497,10 @@ html{
 
 .L14em {
   left: 14em;
+}
+
+.L-100pc {
+  left: -100%;
 }
 
 .L50pc {
@@ -2151,10 +2157,6 @@ html{
 
 .txtL {
   text-align: left;
-}
-
-.txtCen {
-  text-align: center;
 }
 
 .txtC {
@@ -2865,6 +2867,10 @@ html{
   border-bottom: 2px solid #EAEAEA;
 }
 
+.bBEV {
+  border-bottom: 2px solid var(--color);
+}
+
 .bB5E8EAED {
   border-bottom: 5px solid #E8EAED;
 }
@@ -3434,6 +3440,11 @@ html{
 .pd1-2em {
   padding: 1em 2em;
 }
+
+.pd1-4em {
+  padding: 1em 4em;
+}
+
 
 .pd1_5-2em {
   padding: 1.5em 2em;
@@ -4507,6 +4518,10 @@ html{
 
 .mg0-1_2em {
   margin: 0 1.2em;
+}
+
+.mg0-1_4em {
+  margin: 0 4em;
 }
 
 .mg0-0-0_8em {
@@ -6546,6 +6561,10 @@ html{
   color: black;
 }
 
+.coEV {
+  color: #a88c44;
+}
+
 .coBlack {
   color: black;
 }
@@ -7141,6 +7160,14 @@ html{
 
 .bgU {
   background-color: unset;
+}
+
+.bgEV {
+  background-color: var(--color);
+}
+
+.bgEVt {
+  background-color: var(--color-t);
 }
 
 .bgBlack {
@@ -8949,38 +8976,6 @@ html{
   gap: 3vh;
 }
 
-.formSelect {
-  position: relative;
-  display: flex;
-  appearance: none;
-}
-.formSelect select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: 0;
-  box-shadow: none;
-  border: 0;
-  background-image: none;
-  flex: 1;
-  cursor: pointer;
-  box-shadow: inset 1px 1px 4px rgba(87, 86, 147, 0.27);
-}
-
-.formSelect::after {
-  content: "";
-  background: url("/exti.neuronsoftware.us/images/iconsSetting/select.svg") no-repeat;
-  position: absolute;
-  top: 40%;
-  right: 0;
-  width: 2.25em;
-  height: 1em;
-  cursor: pointer;
-  pointer-events: none;
-  transition: 0.5s all ease;
-}
-
 /*Sección de Scroll*/
 .scrll-w0::-webkit-scrollbar {
   width: 0;
@@ -9262,8 +9257,14 @@ html{
   .w100pcIP {
     width: 100%;
   }
+  .w70pcIP {
+    width: 70%;
+  }
   .w63pcIP {
     width: 63%;
+  }
+  .w60pcIP {
+    width: 60%;
   }
   .w4emIP {
     width: 4em;
@@ -9289,6 +9290,12 @@ html{
   .dpFIP {
     display: flex;
   }
+  .dpIBIP {
+    display: inline-block;
+  }
+  .jcSCIP {
+    justify-content: start;
+  }
   .posRIP {
     position: relative;
   }
@@ -9297,6 +9304,9 @@ html{
   }
   .posSIP {
     position: static;
+  }
+  .posFIP {
+    position: fixed;
   }
   .B0IP {
     bottom: 0;
@@ -9313,6 +9323,12 @@ html{
   .fs1_2emIP {
     font-size: 1.2em;
   }
+  .fs1_5emIP {
+    font-size: 1.5em;
+  }
+  .fs2emIP {
+    font-size: 2em;
+  }
   .pd0_65-1emIP {
     padding: 0.65em 1em;
   }
@@ -9324,6 +9340,9 @@ html{
   }
   .pd0_5-5_2emIP {
     padding: 0.5em 5.2em;
+  }
+  .pd1emIP {
+    padding: 1em;
   }
   .pdL2emIP {
     padding-left: 2em;
@@ -9340,11 +9359,17 @@ html{
   .pdB0IP {
     padding-bottom: 0;
   }
+  .mgT0IP {
+    margin-top: 0;
+  }
   .mgT1emIP {
     margin-top: 1em;
   }
   .fdCIP {
     flex-direction: column;
+  }
+  .g0IP {
+    gap: 0;
   }
   .g1emIP {
     gap: 1em;
@@ -9367,8 +9392,29 @@ html{
   .brBR0IP {
     border-bottom-right-radius: 0;
   }
+  .bBWhiteIP:hover {
+    border-bottom: 1px solid white;
+  }
   .dpGIP {
     display: grid;
+  }
+  .ovfAIP {
+    overflow: auto;
+  }
+  .coWhiteIP {
+    color: white;
+  }
+  .bg00000080IP {
+    background-color: #00000080;
+  }
+  .bg212020IP {
+    background-color: #212020;
+  }
+  .bg282424IP {
+    background-color: rgba(40, 36, 36);
+  }
+  .bBB8B4B44AIP {
+    border-bottom: 1px solid #b8b4b44a;
   }
   .gtc2frIP {
     grid-template-columns: repeat(2, 1fr);
@@ -9431,6 +9477,12 @@ html{
 @media screen and (max-width: 550px) {
   .fdCRC {
     flex-direction: column-reverse;
+  }
+  .w13emC {
+    width: 13em;
+  }
+  .h4_2emC {
+    height: 4.2em;
   }
   .mh18emC {
     min-height: 18em;
@@ -9503,6 +9555,9 @@ html{
   }
   .fs1_6emC {
     font-size: 1.6em;
+  }
+  .mg0C {
+    margin: 0;
   }
   .mgR1emC {
     margin-right: 1em;
@@ -9672,6 +9727,9 @@ html{
   .h4emC {
     height: 4em;
   }
+  .h5emC {
+    height: 5em;
+  }
   .h6emC {
     height: 6em;
   }
@@ -9818,5 +9876,3 @@ html{
     font-size: 0.8em;
   }
 }
-
-/*# sourceMappingURL=kiwicss.css.map */
