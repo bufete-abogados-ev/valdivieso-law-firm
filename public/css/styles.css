@@ -3726,6 +3726,10 @@
   padding: 2.5em 2.5em 0.5em;
 }
 
+.pd7-1-7-4em{
+  padding: 7em 1em 7em 4em;
+}
+
 .pdT0 {
   padding-top: 0;
 }
@@ -6573,6 +6577,10 @@
   color: white;
 }
 
+.ho-coEVt:hover{
+  color: #a88c44
+}
+
 .coWhiteA1 {
   color: rgba(255, 255, 255, 0.631372549);
 }
@@ -7080,6 +7088,10 @@
 
 .bgC8D6ED {
   background-color: #C8D6ED;
+}
+
+.bga88c44{
+  background-color: #a88c44;
 }
 
 .bgDAC6C5 {
@@ -9038,6 +9050,10 @@
   background-color: #BB0000;
 }
 
+.ho-bgWhite:hover{
+  background-color: white;
+}
+
 .ho-bgB10017:hover {
   background-color: #B10017;
 }
@@ -9475,6 +9491,16 @@
   }
 }
 @media screen and (max-width: 550px) {
+
+
+  .bgTransparentC {
+    background-color: transparent;
+  }
+
+  .coWhiteC{
+    color: white;
+  }
+
   .fdCRC {
     flex-direction: column-reverse;
   }

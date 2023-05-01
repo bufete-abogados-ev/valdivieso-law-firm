@@ -5,9 +5,9 @@ const dataMenu = {}
 
 window.dataMenu = dataMenu
 
-dataMenu.active = '/'
-
 function Menu(){
+
+    dataMenu.active = Router.currentRoute
 
     const items = [
         { name: 'Inicio'     , url: '/' },

@@ -10,6 +10,7 @@ import { Services   } from './views/services/services.js';
 import { Team       } from './views/team/team.js';
 import { Clients    } from './views/clients/clients.js';
 import { Contact    } from './views/contact/contact.js';
+import { addProgress } from './components/bar.js';
 
 Router.defineRoutes('content', [
     { path: '/'         , component: Home },
@@ -36,4 +37,24 @@ window.toggle_menu = () => {
     }else{
         layer_main_menu.classList.add('activeMenu')
     }
+}
+
+
+//añadir el id del div donde se creara una barra de progreso
+const idBars = ['progress_bar']
+
+addProgress(idBars)
+
+
+
+//verifica si esta visible un elemento (tal vez sirva)
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+
+    );
 }
