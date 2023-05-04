@@ -1,3 +1,4 @@
+import { Conn } from "../../conn.js"
 
 function Contact(){
     return /*html*/`
@@ -21,7 +22,8 @@ function Contact(){
 
         return /*html*/`
             <div class="posR w50pc w100pcC showFormContact">
-                <div class="dpF fdC aiC g2em w100pc h100pc pdT4em pdB2em pdB0C">
+
+                <form id="form_email" class="dpF fdC aiC g2em w100pc h100pc pdT4em pdB2em pdB0C" onsubmit="e.preventDefault()">
                     <div class="dpF fdC coWhite fwB w17em">
                         <p class="ls0_2em fs1_6em">E&V</p>
                         <p class="fs1_2em fs2em">Contáctanos</p>
@@ -31,7 +33,7 @@ function Contact(){
                             <div class="w100pc dpF fdC g0_2em coWhite posR">
                                 <label for="${id}">${label}</label>
                                 <div class="dpF fdC">
-                                    <input id="${id}" type="${type}" placeholder="${placeholder}" 
+                                    <input id="${id}" name="${id}" type="${type}" placeholder="${placeholder}" 
                                     class="w100pc br0_5em ol0 pd0_5em bN" 
                                     onfocus="expand_line(this)" 
                                     onblur="expand_line(this,false)" />
@@ -41,7 +43,7 @@ function Contact(){
                         `).join('')}
                         <div class="w100pc dpF fdC g0_2em coWhite">
                             <label>Mensaje:</label>
-                            <textArea class="w100pc mh5em br0_5em ol0 pd0_5em bN" 
+                            <textArea class="w100pc mh5em br0_5em ol0 pd0_5em bN" name="message" 
                             style="resize: vertical;"
                             onfocus="expand_line(this)" 
                             onblur="expand_line(this,false)"></textArea>
@@ -49,9 +51,10 @@ function Contact(){
                         </div>
                     </div>
                     <div class="w17em dpF jcFE">
-                        <button class="pd0_5-1em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP">ENVIAR</button>
+                        <button type="button" class="pd0_5-1em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP"
+                        onclick="send_email()">ENVIAR</button>
                     </div>
-                </div>
+                </form>
             </div>
         `
     }
@@ -97,6 +100,38 @@ function Contact(){
 window.expand_line = (elem,active=true) =>{
     if(active) elem.parentElement.querySelector('.linea').style='width:100%;'
     else elem.parentElement.querySelector('.linea').style='width:0%;'
+}
+
+window.send_email = async () => {
+
+    if(!form_complete()) return swal({text:'Por favor complete todos los campos',icon:'warning'})
+
+    const form_email = document.getElementById('form_email')
+    const form = new FormData(form_email)
+    const {send} = await Conn.toFD('sendMail', form )
+
+    const   title   = send ? 'Información enviada' : 'Error al enviar información',
+            text    = send ? 'Nos comunicaremos con usted lo más pronto posible' : 'Por favor intente nuevamente',
+            icon    = send ? 'success' : 'error'
+    swal({
+        title,
+        text,
+        icon,
+        button: "Ok",
+    });
+
+    form_email.reset()
+}
+
+function form_complete(){
+    const inputs = document.querySelectorAll('#form_email input')
+    const textArea = document.querySelector('#form_email textArea')
+    let empty = false
+    inputs.forEach(input => {
+        if(input.value == '') empty = true
+    })
+    if(textArea.value == '') empty = true
+    return !empty
 }
 
 export {
