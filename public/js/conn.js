@@ -11,7 +11,8 @@ class ConectorClass {
             headers: { "Content-Type": "application/json;charset=utf-8" },
             body: JSON.stringify(json),
         });
-        let data = await res.json();
+        const data = await res.json();
+        console.log(data)
         return data;
     }
     

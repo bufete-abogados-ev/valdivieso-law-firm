@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 const app = express();
 const path = require('path');
 
@@ -44,6 +45,11 @@ app.get('/contact', function(req, res) {
 });
 
 
+app.get('/hola', function(req, res) {
+    res.send('hola')
+});
+
+
 //ENVIO DE CORREO
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -55,13 +61,32 @@ const transporter = nodemailer.createTransport({
 
 app.post('/sendMail', (req, res) => {
    
+    const { MailMessage } = require('./public/js/mail/mail.js');
+
+    const   now         = new Date(),
+            day         = now.getDate() > 9 ? now.getDate() : `0${now.getDate()}`,
+            month       = now.getMonth() + 1  > 9 ? now.getMonth() + 1 : `0${now.getMonth() + 1 }`,
+            currentDate = `${day}/${month}/${now.getFullYear()}`;
+  
+    // Lee la imagen del archivo estático
+    // let imagen = fs.readFileSync('./public/img/mail/background.jpg');
+
+    // Convierte la imagen a base64
+    // let imagenBase64 = Buffer.from(imagen).toString('base64');
+    // console.log(imagenBase64)
+
     const { name, email,phone, message } = req.body;
 
     const mailOptions = {
         from    : USER,
         to      : 'salazar199925@gmail.com',
         subject : 'Envio de correo de contacto',
-        text    : `Nombre: ${name}, Email: ${email}, Telefono: ${phone}, Mensaje: ${message}`,
+        html    : MailMessage({name, email, phone, message,currentDate,cid:'firm'}),
+        attachments: [{
+            filename: 'background.jpg',
+            path: './public/img/mail/background.jpg',
+            cid: 'firm'
+        }]
     };
 
     transporter.sendMail(mailOptions, function(error, info){

@@ -62,11 +62,11 @@ function Contact(){
     function Info(){
 
         const infoContact = [
-            {text:'Dirección'       , paragraph: ['Calle Infante de la Torre 164 - Oficina', '101, San Borja, Lima, Perú']},
-            {text:'Central'         , paragraph: ['+51 920660097']},
-            {text:'Área Comercial'  , paragraph: ['+51 1 4800201 Anexo 1001']},
-            {text:'E-mail'          , paragraph: ['bufetedeabogadosvaldivieso@gmail.com']},
-            {text:'Horario'         , paragraph: ['08:00 Hrs. - 20:00 Hrs.']},
+            {text:'Dirección'       , icon:'location'   , size:'w90pc', paragraph: ['Calle Infante de la Torre 164 - Oficina', '101, San Borja, Lima, Perú']},
+            {text:'Central'         , icon:'phone'      , size:'w80pc', paragraph: ['+51 920660097']},
+            {text:'Área Comercial'  , icon:'comercial'  , size:'w100pc', paragraph: ['+51 1 4800201 Anexo 1001']},
+            {text:'E-mail'          , icon:'message'    , size:'w80pc', paragraph: ['bufetedeabogadosvaldivieso@gmail.com']},
+            {text:'Horario'         , icon:'time'       , size:'w80pc', paragraph: ['08:00 Hrs. - 20:00 Hrs.']},
         ]
 
         return `
@@ -75,10 +75,10 @@ function Contact(){
             </div>
         `
 
-        function CardInfo({text, paragraph}){
+        function CardInfo({text, paragraph,icon,size}){
             return `
                 <div class="dpF g1em aiFS">
-                    ${Icon()}
+                    ${Icon(icon,size)}
                     <div class="dpF fdC g0_4em">
                         <p class="fs1_2em fwB">${text}</p>
                         <div class="dpF fdC">
@@ -90,9 +90,9 @@ function Contact(){
         }
     }
 
-    function Icon(){
-        return `<div class="w3em h3em bgBlue fsh0">
-
+    function Icon(icon,size){
+        return `<div class="w3em h3em fsh0 dpF aiC jcC bgEV pd0_2em br0_5em">
+            <img class="${size}" src="img/icons/contact/${icon}.svg" style="object-fit:cover">
         </div>`
     }
 }
@@ -104,7 +104,7 @@ window.expand_line = (elem,active=true) =>{
 
 window.send_email = async () => {
 
-    if(!form_complete()) return swal({text:'Por favor complete todos los campos',icon:'warning'})
+    if(!form_complete()) return 
 
     const form_email = document.getElementById('form_email')
     const form = new FormData(form_email)
@@ -124,14 +124,34 @@ window.send_email = async () => {
 }
 
 function form_complete(){
-    const inputs = document.querySelectorAll('#form_email input')
-    const textArea = document.querySelector('#form_email textArea')
-    let empty = false
+    
+    const inputs    = document.querySelectorAll('#form_email input')
+    const textArea  = document.querySelector('#form_email textArea')
+    let fieldEmpty  = null
+
     inputs.forEach(input => {
-        if(input.value == '') empty = true
+        const {value} = input
+        if(value == '' && !fieldEmpty) fieldEmpty = input
     })
-    if(textArea.value == '') empty = true
-    return !empty
+
+    if(textArea.value == '' && !fieldEmpty) fieldEmpty = textArea
+
+    if(!fieldEmpty) return true
+
+    swal({
+        text:'Por favor complete todos los campos',
+        icon:'warning',
+        buttons: {
+            confirm: {
+                text: "OK",
+            }
+        },
+    }).then((confirm) => {
+        if (confirm) fieldEmpty.focus()
+    });
+
+    return false
+
 }
 
 export {
