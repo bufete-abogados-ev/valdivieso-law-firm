@@ -1,3 +1,4 @@
+import { Conn } from "../../conn.js"
 
 function Contact(){
     return /*html*/`
@@ -21,7 +22,8 @@ function Contact(){
 
         return /*html*/`
             <div class="posR w50pc w100pcC showFormContact">
-                <div class="dpF fdC aiC g2em w100pc h100pc pdT4em pdB2em pdB0C">
+
+                <form id="form_email" class="dpF fdC aiC g2em w100pc h100pc pdT4em pdB2em pdB0C" onsubmit="e.preventDefault()">
                     <div class="dpF fdC coWhite fwB w17em">
                         <p class="ls0_2em fs1_6em">E&V</p>
                         <p class="fs1_2em fs2em">Contáctanos</p>
@@ -31,7 +33,7 @@ function Contact(){
                             <div class="w100pc dpF fdC g0_2em coWhite posR">
                                 <label for="${id}">${label}</label>
                                 <div class="dpF fdC">
-                                    <input id="${id}" type="${type}" placeholder="${placeholder}" 
+                                    <input id="${id}" name="${id}" type="${type}" placeholder="${placeholder}" 
                                     class="w100pc br0_5em ol0 pd0_5em bN" 
                                     onfocus="expand_line(this)" 
                                     onblur="expand_line(this,false)" />
@@ -41,7 +43,7 @@ function Contact(){
                         `).join('')}
                         <div class="w100pc dpF fdC g0_2em coWhite">
                             <label>Mensaje:</label>
-                            <textArea class="w100pc mh5em br0_5em ol0 pd0_5em bN" 
+                            <textArea class="w100pc mh5em br0_5em ol0 pd0_5em bN" name="message" 
                             style="resize: vertical;"
                             onfocus="expand_line(this)" 
                             onblur="expand_line(this,false)"></textArea>
@@ -49,9 +51,10 @@ function Contact(){
                         </div>
                     </div>
                     <div class="w17em dpF jcFE">
-                        <button class="pd0_5-1em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP">ENVIAR</button>
+                        <button type="button" class="pd0_5-1em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP"
+                        onclick="send_email()">ENVIAR</button>
                     </div>
-                </div>
+                </form>
             </div>
         `
     }
@@ -59,11 +62,11 @@ function Contact(){
     function Info(){
 
         const infoContact = [
-            {text:'Dirección'       , paragraph: ['Calle Infante de la Torre 164 - Oficina', '101, San Borja, Lima, Perú']},
-            {text:'Central'         , paragraph: ['+51 920660097']},
-            {text:'Área Comercial'  , paragraph: ['+51 1 4800201 Anexo 1001']},
-            {text:'E-mail'          , paragraph: ['bufetedeabogadosvaldivieso@gmail.com']},
-            {text:'Horario'         , paragraph: ['08:00 Hrs. - 20:00 Hrs.']},
+            {text:'Dirección'       , icon:'location'   , size:'w90pc', paragraph: ['Calle Infante de la Torre 164 - Oficina', '101, San Borja, Lima, Perú']},
+            {text:'Central'         , icon:'phone'      , size:'w80pc', paragraph: ['+51 920660097']},
+            {text:'Área Comercial'  , icon:'comercial'  , size:'w100pc', paragraph: ['+51 1 4800201 Anexo 1001']},
+            {text:'E-mail'          , icon:'message'    , size:'w80pc', paragraph: ['bufetedeabogadosvaldivieso@gmail.com']},
+            {text:'Horario'         , icon:'time'       , size:'w80pc', paragraph: ['08:00 Hrs. - 20:00 Hrs.']},
         ]
 
         return `
@@ -72,10 +75,10 @@ function Contact(){
             </div>
         `
 
-        function CardInfo({text, paragraph}){
+        function CardInfo({text, paragraph,icon,size}){
             return `
                 <div class="dpF g1em aiFS">
-                    ${Icon()}
+                    ${Icon(icon,size)}
                     <div class="dpF fdC g0_4em">
                         <p class="fs1_2em fwB">${text}</p>
                         <div class="dpF fdC">
@@ -87,9 +90,9 @@ function Contact(){
         }
     }
 
-    function Icon(){
-        return `<div class="w3em h3em bgBlue fsh0">
-
+    function Icon(icon,size){
+        return `<div class="w3em h3em fsh0 dpF aiC jcC bgEV pd0_2em br0_5em">
+            <img class="${size}" src="img/icons/contact/${icon}.svg" style="object-fit:cover">
         </div>`
     }
 }
@@ -97,6 +100,58 @@ function Contact(){
 window.expand_line = (elem,active=true) =>{
     if(active) elem.parentElement.querySelector('.linea').style='width:100%;'
     else elem.parentElement.querySelector('.linea').style='width:0%;'
+}
+
+window.send_email = async () => {
+
+    if(!form_complete()) return 
+
+    const form_email = document.getElementById('form_email')
+    const form = new FormData(form_email)
+    const {send} = await Conn.toFD('sendMail', form )
+
+    const   title   = send ? 'Información enviada' : 'Error al enviar información',
+            text    = send ? 'Nos comunicaremos con usted lo más pronto posible' : 'Por favor intente nuevamente',
+            icon    = send ? 'success' : 'error'
+    swal({
+        title,
+        text,
+        icon,
+        button: "Ok",
+    });
+
+    form_email.reset()
+}
+
+function form_complete(){
+    
+    const inputs    = document.querySelectorAll('#form_email input')
+    const textArea  = document.querySelector('#form_email textArea')
+    let fieldEmpty  = null
+
+    inputs.forEach(input => {
+        const {value} = input
+        if(value == '' && !fieldEmpty) fieldEmpty = input
+    })
+
+    if(textArea.value == '' && !fieldEmpty) fieldEmpty = textArea
+
+    if(!fieldEmpty) return true
+
+    swal({
+        text:'Por favor complete todos los campos',
+        icon:'warning',
+        buttons: {
+            confirm: {
+                text: "OK",
+            }
+        },
+    }).then((confirm) => {
+        if (confirm) fieldEmpty.focus()
+    });
+
+    return false
+
 }
 
 export {
