@@ -2587,6 +2587,10 @@
   border: none;
 }
 
+.ba88c44{
+  border: 1px solid #a88c44
+}
+
 .bB10017-0_5 {
   border: 0.5px solid #B10017;
 }
@@ -6565,6 +6569,10 @@
   color: black;
 }
 
+.co5d6162{
+  color: #5d6162;
+}
+
 .coEV {
   color: #a88c44;
 }
@@ -9497,8 +9505,29 @@
     background-color: transparent;
   }
 
+  .bC0B0B033C{
+    border: 1px solid #c0b0b033;
+  }
+
+  .bC0B0B033C{
+    background: #C0B0B033;
+  }
+
+  .coBlackC{
+    color: #000;
+  }
+
   .coWhiteC{
     color: white;
+  }
+
+  .bNC{
+    border: none;
+  }
+
+
+  .ho-bgc0b0b063C:hover{
+    background: #c0b0b063;
   }
 
   .fdCRC {
@@ -9770,6 +9799,9 @@
   }
   .h100pcC {
     height: 100%;
+  }
+  .br0_5emC {
+    border-radius: 0.5em;
   }
   .br1emC {
     border-radius: 1em;

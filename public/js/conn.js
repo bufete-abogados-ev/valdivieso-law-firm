@@ -29,6 +29,15 @@ class ConectorClass {
         console.log(data)
         return data;
     }
+
+    //para archivos json
+    async toFile(namaFile='') {
+        const path = `js/data/${namaFile}.json`
+        const res = await fetch(path)
+        return await res.json()
+        
+    }
+    
 }
 
 

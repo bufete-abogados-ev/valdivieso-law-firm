@@ -44,10 +44,10 @@ app.get('/contact', function(req, res) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-
-app.get('/hola', function(req, res) {
-    res.send('hola')
+app.get('/profile', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 
 
 //ENVIO DE CORREO

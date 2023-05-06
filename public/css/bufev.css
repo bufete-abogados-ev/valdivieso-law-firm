@@ -66,6 +66,10 @@ a {
     animation: opacity0To1 ease-in-out 1s;
 }
 
+.trnsScale{
+    animation: scale0To1 ease-in-out 1s;
+}
+
 @keyframes opacity0To1 {
     from {
         opacity: 0;

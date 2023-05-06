@@ -1,5 +1,6 @@
 
 import './global.js'
+import './protos.js'
 
 import { Router     } from './router.js';
 import { Menu       } from './components/menu.js'
@@ -10,6 +11,7 @@ import { Services   } from './views/services/services.js';
 import { Team       } from './views/team/team.js';
 import { Clients    } from './views/clients/clients.js';
 import { Contact    } from './views/contact/contact.js';
+import { Profile    } from './views/team/profile.js';
 import { addProgress } from './components/bar.js';
 
 Router.defineRoutes('content', [
@@ -18,7 +20,8 @@ Router.defineRoutes('content', [
     { path: '/services' , component: Services },
     { path: '/team'     , component: Team },
     { path: '/clients'  , component: Clients },
-    { path: '/contact'  , component: Contact }
+    { path: '/contact'  , component: Contact },
+    { path: '/profile'  , component: Profile}
 ])
   
 Router.initRouter();
@@ -41,7 +44,7 @@ window.toggle_menu = () => {
 
 
 //añadir el id del div donde se creara una barra de progreso
-const idBars = ['progress_bar']
+const idBars = ['progress_bar','progress_team']
 
 addProgress(idBars)
 
