@@ -70,6 +70,17 @@ a {
     animation: scale0To1 ease-in-out 1s;
 }
 
+.cardYear{
+    outline:1px solid white
+}
+
+.cardYear:hover{
+    background-color: white;
+    outline: 1px solid #a88c44;
+    color: #a88c44;
+    transition: all 0.3s ease-in-out;
+}
+
 @keyframes opacity0To1 {
     from {
         opacity: 0;
