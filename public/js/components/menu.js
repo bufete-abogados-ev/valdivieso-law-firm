@@ -31,9 +31,9 @@ function Menu(){
             ${items.map( item => Card_li(item)).join('')}
         </ul>`
     
-    function Card_li({name,url}){
+    function Card_li({name, url}){
      
-        const border = dataMenu.active=== url ? 'border-bottom: 2px solid #a88c44' : ''
+        const border = dataMenu.active === url ? 'border-bottom: 2px solid #a88c44' : ''
 
         return /*html*/`
             <li class="dpIB hoP bBWhiteIP pd1emIP" style="${border}" 

@@ -245,10 +245,6 @@
   justify-content: space-evenly;
 }
 
-.jcCen {
-  justify-content: center;
-}
-
 .jcC {
   justify-content: center;
 }
@@ -259,6 +255,18 @@
 
 .jcFS {
   justify-content: flex-start;
+}
+
+.piCStr {
+  place-items: center stretch;
+}
+
+.piCSta {
+  place-items: center start;
+}
+
+.piC {
+  place-items: center;
 }
 
 .opc0 {
@@ -1365,6 +1373,10 @@
 
 .fb30pc {
   flex-basis: 30%;
+}
+
+.fb50pc {
+  flex-basis: 50%;
 }
 
 .fb70pc {
@@ -3449,7 +3461,6 @@
   padding: 1em 4em;
 }
 
-
 .pd1_5-2em {
   padding: 1.5em 2em;
 }
@@ -3616,6 +3627,10 @@
 
 .pd2-3em {
   padding: 2em 3em;
+}
+
+.pd2-4em {
+  padding: 2em 4em;
 }
 
 .pd2_5-1_5em {
@@ -4528,8 +4543,12 @@
   margin: 0 1.2em;
 }
 
-.mg0-1_4em {
+.mg0-4em {
   margin: 0 4em;
+}
+
+.mg2-4em {
+  margin: 2em 4em;
 }
 
 .mg0-0-0_8em {
