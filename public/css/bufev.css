@@ -68,6 +68,18 @@ a {
     transform: translateX(-50%);
 }
 
+.lineaWhite {
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
+  transform: translateX(-50%);
+}
+
+
 .showInfoContact{
     animation: scale0To1 ease-in-out 1s;
 }
