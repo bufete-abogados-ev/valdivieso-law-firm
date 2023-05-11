@@ -9520,6 +9520,11 @@
 @media screen and (max-width: 550px) {
 
 
+
+  .gtcR1-1frC{
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   .bgTransparentC {
     background-color: transparent;
   }
