@@ -1,4 +1,5 @@
 import { Slide } from "../../components/Slide.js"
+import { Title } from "../../components/Title.js"
 import { Router } from "../../router.js"
 
 const viewServices = {}
@@ -62,7 +63,7 @@ function Services(){
                         <img class="w100pc h100pc objfC" src="img/icons/services/service.jpg" alt="service">
                     </div>
                     <button class="pd0_5-2em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP" 
-                    style="align-self:center"
+                    style="align-self:center;border: 1px solid #a88c44;"
                     onclick="Router.goTo('/contact')">ASESORÍA</button>
                 </div>
             </div>
@@ -72,10 +73,7 @@ function Services(){
     function OtherServices(){
         return /*html*/`
             <div class="dpF fdC g1em">
-                <div class="fs1_5em fwB bBEV pdB0_7em co5d6162 dpF g0_5em">
-                    <div class="w0_5em h100pc fsh0 bgEV"></div>
-                    <p class="txtL">OTROS SERVICIOS</p>
-                </div>
+                ${Title('OTROS SERVICIOS')}
                 <div class="fs0_8em">
                     ${AllServices({except:id})}
                 </div>
