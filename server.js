@@ -105,7 +105,7 @@ app.use((req, res) => {
 
 
 //CORRE EL SERVIDOR
-app.listen(PORT, function() {
+app.listen(3000, function() {
     console.log('Servidor iniciado en el puerto 3000');
 });
 
