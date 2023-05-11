@@ -3,7 +3,10 @@ import { Conn } from "../../conn.js"
 function Contact(){
     return /*html*/`
         <div class="dpF fdC w100pc fs1_2em" 
-            style="background:url('img/icons/contact/background.jpg');background-repeat:no-repeat;background-size:cover;">
+            style="background:url('img/icons/contact/background.jpg');
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-attachment: fixed;">
             <div class="dpF w100pc fdCC"  style="background:#80808066;">
                 ${FormContact()}
                 ${Info()}
