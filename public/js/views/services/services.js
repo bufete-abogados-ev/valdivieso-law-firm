@@ -1,12 +1,12 @@
 import { Slide } from "../../components/Slide.js"
 import { Title } from "../../components/Title.js"
-import { Router } from "../../router.js"
+import { get_params, navigateTo } from "../../util.js"
 
 const viewServices = {}
 
 function Services(){
 
-    const {id} = Router.allParams
+    const {id} = get_params()
 
     viewServices.services = [
         { idService: '1' ,name: 'SOLUCIÓN DE CONTROVERSIAS Y LITIGACIÓN', img: 'service', text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in labore laudantium deserunt fugiat numquam.' },
@@ -62,9 +62,9 @@ function Services(){
                     <div class="w100pc dpF jcC aiC" style="align-self:start">
                         <img class="w100pc h100pc objfC" src="img/icons/services/service.jpg" alt="service">
                     </div>
-                    <button class="pd0_5-2em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP" 
+                    <a class="pd0_5-2em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP" 
                     style="align-self:center;border: 1px solid #a88c44;"
-                    onclick="Router.goTo('/contact')">ASESORÍA</button>
+                    href="/contact">ASESORÍA</a>
                 </div>
             </div>
         `
@@ -110,7 +110,7 @@ function AllServices({except = ''}={}){
                     <div class="dpF asFS fdC jcC" 
                     onmouseover="expand_line_white(this)" 
                     onmouseout="expand_line_white(this,false)"
-                    onclick="Router.goTo('/services?id=${idService}')">
+                    onclick="service_select('/services?id=${idService}')">
                         <div class="dpF aiC g0_5em">
                             <p class="fs1_1em">Más información</p>
                             <div class="dpF aiC jcC w2em pdT0_3em">
@@ -123,6 +123,10 @@ function AllServices({except = ''}={}){
             </div>
         </div>`
     }
+}
+
+window.service_select = (url) => {
+    navigateTo(url)
 }
 
 window.show_hide_more_info = (card,action = 'in') => {
@@ -142,7 +146,6 @@ window.expand_line_white = (elem,active=true) =>{
     if(active) elem.querySelector('.lineaWhite').style='width:100%;'
     else elem.querySelector('.lineaWhite').style='width:0%;'
 }
-
 
 export {
     Services

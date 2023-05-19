@@ -1,4 +1,4 @@
-import { Router } from "../router.js"
+import { get_path, navigateTo } from "../util.js"
 
 const dataMenu = {}
 
@@ -7,7 +7,7 @@ window.dataMenu = dataMenu
 
 function Menu(){
 
-    dataMenu.active = Router.currentRoute
+    dataMenu.active = get_path()
 
     const items = [
         { name: 'Inicio'     , url: '/' },
@@ -24,7 +24,7 @@ function Menu(){
     header.style.flexDirection = style
 
     return /*html*/`
-        <ul class="dpF jcC g1em fwW hoP fdCIP g0IP jcSCIP w60pcIP h100pcIP mgT0IP ovfAIP bg282424IP">
+        <ul class="dpF jcC g1em fwW hoP fdCIP g0IP jcSCIP w60pcIP h100pcIP mgT0IP ovfAIP bg282424IP w100pcC">
             <li class="dpN pd1emIP bBB8B4B44AIP dpIBIP coWhiteIP fs1_5emIP bg212020IP" onclick="close_nav()">
                 &#9776
             </li>
@@ -45,17 +45,8 @@ function Menu(){
     }
 }
 
-function repaint_menu(){
-    const layer_main_menu = document.getElementById('layer_main_menu')
-    layer_main_menu.innerHTML   = Menu()
-}
-
 window.menu_goTo = (url) => {
-    close_nav()
-    if(Router.get()===url) return
-    dataMenu.active = url
-    Router.goTo(url)
-    repaint_menu()
+    navigateTo(url)
 }
 
 window.close_nav = () => {
@@ -64,7 +55,7 @@ window.close_nav = () => {
 }
 
 window.efect_hover = (elemLi,hover='') => {
-    if(window.screen.width > 850) return
+    if(window.innerWidth > 850) return
     const a_href = elemLi.querySelector('a')
     if(hover == 'out') a_href.style.color = ''
     else a_href.style.color = '#fff'

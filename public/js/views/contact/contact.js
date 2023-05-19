@@ -11,7 +11,6 @@ function Contact(){
                 ${FormContact()}
                 ${Info()}
             </div>
-            <div id="progress_bar"></div>
         </div>
     `
 
@@ -111,10 +110,10 @@ window.send_email = async () => {
 
     const form_email = document.getElementById('form_email')
     const form = new FormData(form_email)
-    const {send} = await Conn.toFD('sendMail', form )
+    const {send,msg} = await Conn.toFD('sendMail', form )
 
     const   title   = send ? 'Información enviada' : 'Error al enviar información',
-            text    = send ? 'Nos comunicaremos con usted lo más pronto posible' : 'Por favor intente nuevamente',
+            text    = send ? 'Nos comunicaremos con usted lo más pronto posible' : msg,
             icon    = send ? 'success' : 'error'
     swal({
         title,

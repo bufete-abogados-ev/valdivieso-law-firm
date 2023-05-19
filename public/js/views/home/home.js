@@ -52,7 +52,7 @@ function Home(){
 
     function Home_about(){
         return /*html*/`
-            <div class="dpF g1em pd2em co5d6162 fs1_2em">
+            <div class="dpF g1em pd2em co5d6162 fs1_2em fdCC">
                 <div class="dpF fdC g1em w50pc w100pcC">
                     <div class="fs1_5em fwB">
                         <p class="ls0_2em coEV">E&V</p>

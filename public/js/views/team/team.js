@@ -1,7 +1,6 @@
 import { Slide } from "../../components/Slide.js"
 import { Conn } from "../../conn.js"
-import { Router } from "../../router.js"
-
+import { navigateTo } from "../../util.js"
 
 const viewTeam = {}
 
@@ -12,10 +11,8 @@ window.viewTeam = viewTeam
 
 async function Team(){
 
-    const { type = '' } = Router.params()
     const { data } = await Conn.toFile('teams')
 
-    viewTeam.tag    = type
     viewTeam.teams  = data
 
     return `
@@ -24,7 +21,6 @@ async function Team(){
             ${navTeam()}
             <div id="content_nav" class="dpNC posR ovfH"></div>
         </div>
-        <div id="progress_team"></div>
     `
 }
 
@@ -84,7 +80,7 @@ function Content({isNav=false}={}){
 function cardTeam({id,name,description,img,type}={}){
     return /*html*/`
         <div class="w25em dpF fdC g1em">
-            <div class="w100pc h30em hoP" onclick="Router.goTo('/profile?id=${id}')">
+            <div class="w100pc h30em hoP" onclick="select_profile('${id}')">
                 <img class="w100pc h100pc" src="img/users/luz.jpg" alt="${name}" style="object-fit:cover">
             </div>
             <div class="dpF fdC g0_5em pd1em pdB2em">
@@ -103,8 +99,11 @@ function close_team(){
 }
 
 window.paint_team = (id) => {
-    // Router.newUrl(`/team?type=${id}`)
     expand_team(id)
+}
+
+window.select_profile = (id) => {
+    navigateTo(`/profile?id=${id}`)
 }
 
 

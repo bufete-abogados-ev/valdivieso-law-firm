@@ -1,6 +1,5 @@
 import { point } from "../../components/point.js"
-import { Router } from "../../router.js"
-
+import { get_params, navigateTo } from "../../util.js"
 
 const viewProfile = {}
 
@@ -8,13 +7,14 @@ window.viewProfile = viewProfile
 
 async function Profile(){
 
-    const {id} = Router.allParams
-  
-    if(!id) Router.goTo('/team')
-
     const { data } = await Conn.toFile('teams')
+
+    const {id = ''} = get_params()
+  
     const profile = data.find( item => item.id == id)
-    
+
+    if(!profile) navigateTo('/team')
+
     viewProfile.profile = profile
 
     return /*html*/`
@@ -114,7 +114,6 @@ function get_study_information(){
 
     return arraybyInfo
 }
-
 
 export {
     Profile

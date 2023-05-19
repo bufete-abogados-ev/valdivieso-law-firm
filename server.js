@@ -60,6 +60,8 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/sendMail', (req, res) => {
+
+    return res.send({send:false,msg:'Desactivado temporalmente'});
    
     const { MailMessage } = require('./public/js/mail/mail.js');
 
@@ -68,18 +70,11 @@ app.post('/sendMail', (req, res) => {
             month       = now.getMonth() + 1  > 9 ? now.getMonth() + 1 : `0${now.getMonth() + 1 }`,
             currentDate = `${day}/${month}/${now.getFullYear()}`;
   
-    // Lee la imagen del archivo estático
-    // let imagen = fs.readFileSync('./public/img/mail/background.jpg');
-
-    // Convierte la imagen a base64
-    // let imagenBase64 = Buffer.from(imagen).toString('base64');
-    // console.log(imagenBase64)
-
     const { name, email,phone, message } = req.body;
 
     const mailOptions = {
         from    : USER,
-        to      : 'salazar199925@gmail.com',
+        to      : '',
         subject : 'Envio de correo de contacto',
         html    : MailMessage({name, email, phone, message,currentDate,cid:'firm'}),
         attachments: [{
@@ -90,7 +85,7 @@ app.post('/sendMail', (req, res) => {
     };
 
     transporter.sendMail(mailOptions, function(error, info){
-        if (error) return res.status(500).send({send:false,msg:'Correo electrónico enviado correctamente'});
+        if (error) return res.status(500).send({send:false,msg:'Por favor intente nuevamente'});
         res.send({send:true,msg:'Correo electrónico enviado correctamente'});
     });
 

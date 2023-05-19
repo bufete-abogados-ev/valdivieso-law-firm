@@ -40,9 +40,9 @@ function About(){
                     <p>Nos especializamos en Derecho Penal Económico y de la Empresa, así como en Compliance. Hace quince años, comenzamos nuestras actividades con el objetivo de mejorar los estándares de práctica y los niveles de satisfacción del cliente.</p>
                     <p>Nuestra larga experiencia explica nuestra alta tasa de éxito. Creemos en la integridad empresarial, lo que nos ha permitido celebrar ser la primera empresa en Perú certificada con el Sistema de Gestión Antisoborno ISO 37001: 2016, por BASC.</p>
                 </div>
-                <button class="pd0_5-2em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP" 
+                <a class="pd0_5-2em bga88c44 bN coWhite ho-coEVt ho-bgWhite trns0_5s br0_5em hoP" 
                 style="border: 1px solid #a88c44;"
-                onclick="Router.goTo('/contact')">ASESORÍA</button>
+                href="/contact">ASESORÍA</a>
             </div>
         `
     }

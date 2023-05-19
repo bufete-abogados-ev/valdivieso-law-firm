@@ -11,3 +11,12 @@ window.addEventListener('click', (e) => {
         layer_main_menu.classList.remove('activeMenu')
     }
 })
+
+window.toggle_menu = () => {
+    const layer_main_menu = document.getElementById('layer_main_menu')
+    if(layer_main_menu.classList.contains('activeMenu')){
+        layer_main_menu.classList.remove('activeMenu')
+    }else{
+        layer_main_menu.classList.add('activeMenu')
+    }
+}
