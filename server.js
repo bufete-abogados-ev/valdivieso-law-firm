@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const app = express();
 const path = require('path');
+const cors = require('cors');
 
 //INFORMACIÓN DEL ARCHIVO ENV
 const {USER,PASS,PORT} = process.env;
@@ -13,6 +14,15 @@ const {USER,PASS,PORT} = process.env;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+//CORS
+// Habilita CORS con opciones personalizadas
+app.use(cors({
+    origin: 'http://localhost:4200', // Origen permitido
+    methods: ['GET', 'POST'], // Métodos HTTP permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
+    credentials: true // Habilitar el intercambio de cookies en las solicitudes CORS
+}));
 
 //PARA CARGAR ARCHIVOS ESTATICOS
 app.use(express.static(path.join(__dirname, 'public')));
@@ -90,7 +100,7 @@ app.post('/sendMail', (req, res) => {
     };
 
     transporter.sendMail(mailOptions, function(error, info){
-        if (error) return res.status(500).send({send:false,msg:'Correo electrónico enviado correctamente'});
+        if (error) return res.status(500).send({send:false,msg:'Error al enviar el correo electrónico'});
         res.send({send:true,msg:'Correo electrónico enviado correctamente'});
     });
 
